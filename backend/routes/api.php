@@ -4,6 +4,7 @@ use App\Http\Controllers\TourController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\public\AuthController;
+use App\Http\Controllers\public\BookingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::apiResource('tours', TourController::class)->except('show');
 
 Route::get('tours/{slug}', [TourController::class, 'showBySlug']);
+Route::apiResource('book', BookingController::class);
 
 
 Route::group([

@@ -143,6 +143,7 @@
                           name="name"
                           placeholder="Your Name"
                           required=""
+                          v-model="user.fullname"
                         />
                       </div>
                       <div class="form-group">
@@ -151,6 +152,7 @@
                           name="email"
                           placeholder="Your Email"
                           required=""
+                          v-model="user.email"
                         />
                       </div>
                       <div class="form-group">
@@ -159,14 +161,18 @@
                           name="phone"
                           placeholder="Phone"
                           required=""
+                          v-model="user.phone_number"
                         />
                       </div>
                       <div class="form-group">
                         <input
-                          type="text"
+                          type="number"
                           name="tickets"
-                          placeholder="Tickets"
+                          placeholder="1"
                           required=""
+                          min="1"
+                          max="10"
+                          v-model="form.ticket"
                         />
                       </div>
                       <div class="form-group">
@@ -174,6 +180,7 @@
                           type="date"
                           data-date=""
                           data-date-format="DD MMMM YYYY"
+                          v-model="form.date"
                         />
                       </div>
                       <div class="form-group">
@@ -241,6 +248,18 @@ import LayoutComponent from '../layouts/LayoutComponent.vue'
 
 export default {
   name: 'TourDetail',
+  data () {
+    return {
+      form: {
+        name: '',
+        email: '',
+        password: '',
+        ticket: '',
+        date: '',
+        message: ''
+      }
+    }
+  },
   components: {
     LayoutComponent
   },
@@ -249,7 +268,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      tour: 'tours/getTour'
+      tour: 'tours/getTour',
+      user: 'auth/user'
     })
   },
   methods: {
